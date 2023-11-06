@@ -2,28 +2,28 @@
 <testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-11-06T12:12:52 IST" name="Default suite" finished-at="2023-11-06T12:13:07 IST" duration-ms="14536">
+  <suite started-at="2023-11-06T12:18:06 IST" name="Default suite" finished-at="2023-11-06T12:18:21 IST" duration-ms="14836">
     <groups>
     </groups>
-    <test started-at="2023-11-06T12:12:52 IST" name="Default test" finished-at="2023-11-06T12:13:07 IST" duration-ms="14536">
+    <test started-at="2023-11-06T12:18:06 IST" name="Default test" finished-at="2023-11-06T12:18:21 IST" duration-ms="14836">
       <class name="Test.DynamicTableAutomation">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:Test.DynamicTableAutomation@28261e8e]" started-at="2023-11-06T12:12:52 IST" name="setUp" finished-at="2023-11-06T12:12:55 IST" duration-ms="2779" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:Test.DynamicTableAutomation@28261e8e]" started-at="2023-11-06T12:18:06 IST" name="setUp" finished-at="2023-11-06T12:18:09 IST" duration-ms="3521" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testNavigateToTableDataButton()[pri:1, instance:Test.DynamicTableAutomation@28261e8e]" started-at="2023-11-06T12:12:55 IST" name="testNavigateToTableDataButton" finished-at="2023-11-06T12:12:55 IST" duration-ms="345" status="PASS">
+        <test-method signature="testNavigateToTableDataButton()[pri:1, instance:Test.DynamicTableAutomation@28261e8e]" started-at="2023-11-06T12:18:09 IST" name="testNavigateToTableDataButton" finished-at="2023-11-06T12:18:09 IST" duration-ms="69" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testNavigateToTableDataButton -->
-        <test-method signature="testEnterDataAndRefreshTable()[pri:2, instance:Test.DynamicTableAutomation@28261e8e]" started-at="2023-11-06T12:12:55 IST" name="testEnterDataAndRefreshTable" finished-at="2023-11-06T12:12:56 IST" duration-ms="621" status="PASS">
+        <test-method signature="testEnterDataAndRefreshTable()[pri:2, instance:Test.DynamicTableAutomation@28261e8e]" started-at="2023-11-06T12:18:09 IST" name="testEnterDataAndRefreshTable" finished-at="2023-11-06T12:18:10 IST" duration-ms="614" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testEnterDataAndRefreshTable -->
-        <test-method signature="testAssertionOfData()[pri:3, instance:Test.DynamicTableAutomation@28261e8e]" started-at="2023-11-06T12:12:56 IST" name="testAssertionOfData" finished-at="2023-11-06T12:13:06 IST" duration-ms="10500" status="PASS">
+        <test-method signature="testAssertionOfData()[pri:3, instance:Test.DynamicTableAutomation@28261e8e]" started-at="2023-11-06T12:18:10 IST" name="testAssertionOfData" finished-at="2023-11-06T12:18:20 IST" duration-ms="10411" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testAssertionOfData -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:Test.DynamicTableAutomation@28261e8e]" started-at="2023-11-06T12:13:06 IST" name="tearDown" finished-at="2023-11-06T12:13:07 IST" duration-ms="241" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:Test.DynamicTableAutomation@28261e8e]" started-at="2023-11-06T12:18:20 IST" name="tearDown" finished-at="2023-11-06T12:18:21 IST" duration-ms="176" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
