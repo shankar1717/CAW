@@ -17,29 +17,29 @@ The script automates the following steps on the provided URL:
 ### Technologies Used
 - Language:  programming language -  Java
 - Testing Framework:  Selenium, TestNG
+- Browser:  Chrome
+- OS:  WINDOWS 11
 
 ### Setup Instructions
 - Clone the repository or download the source code.
-- [Add instructions on setting up the development environment, dependencies, and any required configurations]
+url:  https://github.com/shankar1717/CAW.git
 
 ### Running the Automation Script
-- Execute the script by [Specify how to run the automation script - e.g., running the main file, executing a specific command]
-
+- Execute the script by running the main file run as TestNG - CAW-> src\test\java\-> Test-> DynamicTableAutomation.java
+  
 ### Test Scenario
 
 1. **Load URL and Click on "Table Data" Button**: The script will navigate to the URL and click on the "Table Data" button.
 2. **Enter Data and Refresh Table**: The script will input the provided data and click on the "Refresh Table" button.
 3. **Assertion of Data**: Validate that the data entered matches the data populated in the UI table.
 
-## Code Quality and Best Practices
 
-The code has been written following best coding practices with an emphasis on clean and readable code. It adheres to coding standards and efficient automation practices.
 
 ### Code Structure
 
-- [Describe the structure of the codebase, e.g., directories, main files, and their functions]
-- [Explain the functions or methods related to different test steps]
+
 
 ## Submission
 
 The completed code for this assignment can be found in the repository. To review the code, clone or download the repository and follow the setup instructions to run the automation script.
+url: https://github.com/shankar1717/CAW.git
