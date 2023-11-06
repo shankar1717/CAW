@@ -48,7 +48,7 @@ public class DynamicTableAutomation {
 		WebElement inputTextBox = driver.findElement(By.xpath("//textarea[@id='jsondata']"));
 		inputTextBox.clear();
 		inputTextBox.sendKeys(inputData);
-
+		//click on Refresh Button
 		WebElement refreshButton = driver.findElement(By.xpath("//button[@id='refreshtable']"));
 		refreshButton.click();
 	}
