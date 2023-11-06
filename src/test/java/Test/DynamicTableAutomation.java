@@ -1,104 +1,103 @@
-	package Test;
+package Test;
 
-	import org.openqa.selenium.By;
-	import org.openqa.selenium.WebDriver;
-	import org.openqa.selenium.WebElement;
-	import org.openqa.selenium.chrome.ChromeDriver;
-	import org.testng.Assert;
-	import org.testng.annotations.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-	import io.github.bonigarcia.wdm.WebDriverManager;
+public class DynamicTableAutomation {
+	WebDriver driver;
+	String inputData;
 
-	import java.util.ArrayList;
-	import java.util.List;
-	import java.util.concurrent.TimeUnit;
-
-	public class DynamicTableAutomation {
-
-	    @SuppressWarnings("deprecation")
-		@Test
-	    public void testDynamicTableAutomation() {
-
-	        // Setup the WebDriver for Chrome
-	        WebDriverManager.chromedriver().setup();
-	        WebDriver driver = new ChromeDriver();
-
-	        // Open the page
-	        driver.get("https://testpages.herokuapp.com/styled/tag/dynamic-table.html");
-
-	        // implicit wait of 10 seconds
-	        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-	        // click on the "Table Data" button
-	        WebElement tableDataButton = driver.findElement(By.xpath("//summary[normalize-space()='Table Data']"));
-	        tableDataButton.click();
-
-	        // input data in JSON format
-	        String inputData = "[{\"name\" : \"Bob\", \"age\" : 20, \"gender\": \"male\"}, "
-	                + "{\"name\": \"George\", \"age\" : 42, \"gender\": \"male\"}, "
-	                + "{\"name\": \"Sara\", \"age\" : 42, \"gender\": \"female\"}, "
-	                + "{\"name\": \"Conor\", \"age\" : 40, \"gender\": \"male\"}, "
-	                + "{\"name\": \"Jennifer\", \"age\" : 42, \"gender\": \"female\"}]";
-
-	        // clear the input text box, then enter the input data
-	        WebElement inputTextBox = driver.findElement(By.xpath("//textarea[@id='jsondata']"));
-	        inputTextBox.clear();
-	        inputTextBox.sendKeys(inputData);
-
-	        // "Refresh Table" button
-	        WebElement refreshButton = driver.findElement(By.xpath("//button[@id='refreshtable']"));
-	        refreshButton.click();
-
-	        // Locate the dynamic table and its rows
-	        WebElement table = driver.findElement(By.id("dynamictable"));
-	        
-	        List<WebElement> rows = table.findElements(By.tagName("tr"));
-
-	        // Store the data from the table
-	        List<String> tableData = retrieveTableData(rows);
-
-	        // Split the expected data into an array
-	        String[] expectedData = inputData.split("}, ");
-
-	        // Loop through the array to fix the formatting
-	        for (int i = 0; i < expectedData.length; i++) {
-	            if (i != expectedData.length - 1) {
-	                expectedData[i] += "}";
-	            }
-	        }
-
-	        // Assertions: Check if the actual data contains the expected data
-	        String actualData = String.join("", tableData).trim();
-	        String expectedDataString = String.join("", expectedData).replace("},", "}").trim();
-
-	        // Output actual and expected data
-	        System.out.println("Actual: " + actualData);
-	        System.out.println("Expected: " + expectedDataString);
-
-	        // Perform the assertion
-	        Assert.assertTrue(actualData.contains(expectedDataString));
-
-	        // Close the WebDriver
-	        driver.quit();
-	    }
-
-	    public List<String> retrieveTableData(List<WebElement> rows) {
-	        List<String> tableData = new ArrayList<>();
-
-	        // Loop through the rows and cells to extract table data
-	        for (WebElement row : rows) {
-	            List<WebElement> cells = row.findElements(By.tagName("td"));
-	            StringBuilder rowData = new StringBuilder();
-
-	            for (WebElement cell : cells) {
-	                rowData.append(cell.getText()).append(", ");
-	            }
-
-	            // Add the row data to the tableData list
-	            tableData.add(rowData.toString());
-	        }
-	        return tableData;
-	    }
+	@SuppressWarnings("deprecation")
+	@BeforeClass
+	public void setUp() {
+		// Setting up the WebDriver for Chrome
+		WebDriverManager.chromedriver().setup();
+		driver = new ChromeDriver();
+		// Opening the webpage
+		driver.get("https://testpages.herokuapp.com/styled/tag/dynamic-table.html");
+		// Setting an implicit wait for 10 seconds
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
+	@Test(priority = 1)
+	public void testNavigateToTableDataButton() {
+		// Clicking on the "Table Data" button
+		WebElement tableDataButton = driver.findElement(By.xpath("//summary[normalize-space()='Table Data']"));
+		tableDataButton.click();
+	}
 
+	@Test(priority = 2)
+	public void testEnterDataAndRefreshTable() {
+		// Entering input data in JSON format into a textarea and refreshing the table
+		inputData = "[{\"name\" : \"Bob\", \"age\" : 20, \"gender\": \"male\"}, "
+				+ "{\"name\": \"George\", \"age\" : 42, \"gender\": \"male\"}, "
+				+ "{\"name\": \"Sara\", \"age\" : 42, \"gender\": \"female\"}, "
+				+ "{\"name\": \"Conor\", \"age\" : 40, \"gender\": \"male\"}, "
+				+ "{\"name\": \"Jennifer\", \"age\" : 42, \"gender\": \"female\"}]";
+
+		WebElement inputTextBox = driver.findElement(By.xpath("//textarea[@id='jsondata']"));
+		inputTextBox.clear();
+		inputTextBox.sendKeys(inputData);
+
+		WebElement refreshButton = driver.findElement(By.xpath("//button[@id='refreshtable']"));
+		refreshButton.click();
+	}
+
+	@Test(priority = 3)
+	public void testAssertionOfData() {
+
+		// Retrieving the data from the dynamic table
+		WebElement table = driver.findElement(By.id("dynamictable"));
+		List<WebElement> rows = table.findElements(By.tagName("tr"));
+		List<String> tableData = retrieveTableData(rows);
+
+		// Removing unwanted characters and formatting the actual data
+		String actualDataString = String.join("", tableData).replaceAll("[\",\\s:{}]", "");
+		System.out.println("actualDataString:" + actualDataString);
+
+		// Preparing the expected data string
+		String[] expectedDataArray = inputData.split(", ");
+		List<String> expectedData = new ArrayList<>();
+		for (String data : expectedDataArray) {
+			String[] temp = data.split(":");
+			expectedData.add(temp[1].replaceAll("[\"\\{\\}]", "").trim());
+		}
+
+		String expectedDataString = String.join("", expectedData);
+		expectedDataString = expectedDataString.substring(0, expectedDataString.length() - 1);
+		System.out.println("expectedDataString:" + expectedDataString);
+
+		// Performing the assertion by comparing actual and expected data strings
+		Assert.assertEquals(actualDataString, expectedDataString);
+	}
+
+	// Method to retrieve table data
+	public List<String> retrieveTableData(List<WebElement> rows) {
+		List<String> tableData = new ArrayList<>();
+		for (WebElement row : rows) {
+			List<WebElement> cells = row.findElements(By.tagName("td"));
+			StringBuilder rowData = new StringBuilder();
+			for (WebElement cell : cells) {
+				rowData.append(cell.getText()).append(", ");
+			}
+			tableData.add(rowData.toString());
+		}
+		return tableData;
+	}
+
+	@AfterClass
+	public void tearDown() {
+		
+		driver.quit();
+	}
+}
