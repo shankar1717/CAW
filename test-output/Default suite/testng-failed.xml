@@ -3,11 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Test.asssssssss">
+      <class name="Test.TwoTwo">
         <methods>
-          <include name="testDynamicTableAutomation"/>
+          <include name="setUp"/>
+          <include name="testAssertionOfData"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- Test.asssssssss -->
+      </class> <!-- Test.TwoTwo -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
